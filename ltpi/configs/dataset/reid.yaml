@@ -1,0 +1,9 @@
+defaults:
+  - default
+
+_target_: ltpi.wrappers.dataset.reid_dataset.Reid
+
+fps: 25
+dataset_path: ${data_dir}/SoccerNetGS
+annotation_path: ${data_dir}/SoccerNetGS
+eval_set: "valid"

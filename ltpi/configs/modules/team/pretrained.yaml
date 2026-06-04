@@ -1,0 +1,5 @@
+_target_: ltpi.wrappers.team.pretrained.PretrainedTeams
+batch_size: 4
+# It's better not to use probs because it gives worse metrics than just set 0 and 1 as conf
+use_probs: False
+use_pitch: False

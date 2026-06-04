@@ -1,0 +1,72 @@
+matches_ids:
+  - id: 2
+    folder: "valid"
+    sngs_inside: ['SNGS-021','SNGS-022','SNGS-023','SNGS-024','SNGS-025','SNGS-026','SNGS-027','SNGS-028','SNGS-029','SNGS-030','SNGS-031','SNGS-032','SNGS-033','SNGS-034','SNGS-035','SNGS-036','SNGS-037','SNGS-038']               
+    remapping: "{'1': {'right-team': 'second_team', 'left-team': 'first_team'}}"
+    sngs_times: "{'SNGS-021': '1', 'SNGS-022': '1', 'SNGS-023': '1', 'SNGS-024': '1', 'SNGS-025': '1', 'SNGS-026': '1', 'SNGS-027': '1', 'SNGS-028': '1', 'SNGS-029': '2', 'SNGS-030': '2', 'SNGS-031': '2', 'SNGS-032': '2', 'SNGS-033': '2', 'SNGS-034': '2', 'SNGS-035': '2', 'SNGS-036': '2', 'SNGS-037': '2', 'SNGS-038': '2'}"                  
+    pure_colors: "{'first_team': ('blue', 'blue'), 'second_team': ('white', 'white'), 'other': [('yellow', 'black'), ('orange', 'orange'), ('red', 'red'), ('orange', 'black'), ('black', 'black')]}"              
+    model_params_id: "8698824f64f34bd386b99f7802e074cf"   
+
+  - id: 3
+    folder: "valid"   
+    sngs_inside: ['SNGS-039', 'SNGS-040', 'SNGS-041', 'SNGS-042', 'SNGS-043', 'SNGS-044', 'SNGS-045', 'SNGS-046', 'SNGS-047', 'SNGS-048', 'SNGS-049', 'SNGS-050', 'SNGS-051', 'SNGS-052', 'SNGS-053', 'SNGS-054', 'SNGS-055', 'SNGS-056', 'SNGS-057', 'SNGS-058', 'SNGS-059']
+    remapping: "{'1': {'right-team': 'first_team', 'left-team': 'second_team'}}"
+    sngs_times: "{'SNGS-039': '1', 'SNGS-040': '1', 'SNGS-041': '1', 'SNGS-042': '1', 'SNGS-043': '1', 'SNGS-044': '1', 'SNGS-045': '1', 'SNGS-046': '1', 'SNGS-047': '1', 'SNGS-048': '1', 'SNGS-049': '2', 'SNGS-050': '2', 'SNGS-051': '2', 'SNGS-052': '2', 'SNGS-053': '2', 'SNGS-054': '2', 'SNGS-055': '2', 'SNGS-056': '2', 'SNGS-057': '2', 'SNGS-058': '2', 'SNGS-059': '2'}"
+    pure_colors: "{'first_team': ('yellow', 'black'), 'second_team': ('white', 'green'), 'other': [('lightblue', 'lightblue'), ('black', 'black'), ('red', 'red'), ('green', 'white'), ('white', 'white'), ('red', 'black'), ('lightblue', 'red'), ('blue', 'black')]}"
+    model_params_id: "56e5e4948b3b44d0ad3162f431c29334"
+
+  - id: 4
+    folder: "train"
+    sngs_inside: ['SNGS-066','SNGS-067','SNGS-068','SNGS-069','SNGS-070','SNGS-071','SNGS-072','SNGS-073','SNGS-074','SNGS-075','SNGS-076','SNGS-077']               
+    remapping: "{'1': {'right-team': 'first_team', 'left-team': 'second_team'}}"
+    sngs_times: "{'SNGS-066': '1', 'SNGS-067': '1', 'SNGS-068': '1', 'SNGS-069': '2', 'SNGS-070': '2', 'SNGS-071': '2', 'SNGS-072': '2', 'SNGS-073': '2', 'SNGS-074': '2', 'SNGS-075': '2', 'SNGS-076': '2', 'SNGS-077': '2'}"                
+    pure_colors: "{'first_team': ('green', 'green'), 'second_team': ('white', 'white'), 'other': [('yellow', 'black'), ('red', 'red'), ('orange', 'black'), ('black', 'black')]}"               
+    model_params_id: "0f7da9f726244b5dae0205dfbeef1c3f"  
+
+  - id: 5
+    folder: "valid"
+    sngs_inside: ['SNGS-078','SNGS-079','SNGS-080','SNGS-081','SNGS-082','SNGS-083','SNGS-084','SNGS-085','SNGS-086','SNGS-087','SNGS-088','SNGS-089','SNGS-090','SNGS-091','SNGS-092','SNGS-093','SNGS-094','SNGS-095','SNGS-096']               
+    remapping: "{'1': {'right-team': 'second_team', 'left-team': 'first_team'}}"        
+    sngs_times: "{'SNGS-078': '1', 'SNGS-079': '1', 'SNGS-080': '1', 'SNGS-081': '1', 'SNGS-082': '1', 'SNGS-083': '1', 'SNGS-084': '1', 'SNGS-085': '1', 'SNGS-086': '2', 'SNGS-087': '2', 'SNGS-088': '2', 'SNGS-089': '2', 'SNGS-090': '2', 'SNGS-091': '2', 'SNGS-092': '2', 'SNGS-093': '2', 'SNGS-094': '2', 'SNGS-095': '2', 'SNGS-096': '2'}"     
+    pure_colors: "{'first_team': ('blue', 'blue'), 'second_team': ('white', 'white'), 'other': [('yellow', 'black'), ('orange', 'orange'), ('black', 'black')]}"
+    model_params_id: "98daf69fdb9442abb0a9cc919dcffd81" 
+
+  - id: 6
+    folder: "train"
+    sngs_inside: ['SNGS-097','SNGS-098','SNGS-099','SNGS-100','SNGS-101','SNGS-102','SNGS-103','SNGS-104','SNGS-105','SNGS-106','SNGS-107','SNGS-108','SNGS-109','SNGS-110','SNGS-111','SNGS-112','SNGS-113','SNGS-114','SNGS-115']           
+    remapping: "{'1': {'right-team': 'first_team', 'left-team': 'second_team'}}"
+    sngs_times: "{'SNGS-097': '1', 'SNGS-098': '1', 'SNGS-099': '1', 'SNGS-100': '1', 'SNGS-101': '1', 'SNGS-102': '1', 'SNGS-103': '1', 'SNGS-104': '1', 'SNGS-105': '1', 'SNGS-106': '1', 'SNGS-107': '2', 'SNGS-108': '2', 'SNGS-109': '2', 'SNGS-110': '2', 'SNGS-111': '2', 'SNGS-112': '2', 'SNGS-113': '2', 'SNGS-114': '2', 'SNGS-115': '2'}"             
+    pure_colors: "{'first_team': ('red', 'white'), 'second_team': ('black', 'black'), 'other': [('yellow', 'black'), ('gray', 'gray'), ('yellow', 'yellow'), ('white', 'white'), ('blue', 'blue')]}"
+    model_params_id: "7ffe150193374741b768ec1eca8212e6" 
+  
+  - id: 7
+    folder: "test"
+    sngs_inside: ['SNGS-116', 'SNGS-117', 'SNGS-118', 'SNGS-119', 'SNGS-120', 'SNGS-121', 'SNGS-122', 'SNGS-123', 'SNGS-124', 'SNGS-125', 'SNGS-126', 'SNGS-127', 'SNGS-128', 'SNGS-129', 'SNGS-130', 'SNGS-131']
+    remapping: "{'1': {'right-team': 'first_team', 'left-team': 'second_team'}}"
+    sngs_times: "{'SNGS-116': '1', 'SNGS-117': '1', 'SNGS-118': '1', 'SNGS-119': '1', 'SNGS-120': '1', 'SNGS-121': '1', 'SNGS-122': '1', 'SNGS-123': '1', 'SNGS-124': '2', 'SNGS-125': '2', 'SNGS-126': '2', 'SNGS-127': '2', 'SNGS-128': '2', 'SNGS-129': '2', 'SNGS-130': '2', 'SNGS-131': '2'}"
+    pure_colors: "{'first_team': ('red', 'white'), 'second_team': ('white', 'green'), 'other': [('yellow', 'black'), ('black', 'black'), ('gray', 'gray')]}"
+    model_params_id: "6e5da79d731e483fa1be61baefa27e5c"
+
+  - id: 8
+    folder: "test"
+    sngs_inside: ['SNGS-132', 'SNGS-133', 'SNGS-134', 'SNGS-135', 'SNGS-136', 'SNGS-137', 'SNGS-138', 'SNGS-139', 'SNGS-140', 'SNGS-141', 'SNGS-142', 'SNGS-143', 'SNGS-144', 'SNGS-145', 'SNGS-146', 'SNGS-147', 'SNGS-148', 'SNGS-149', 'SNGS-150']
+    remapping: "{'1': {'right-team': 'second_team', 'left-team': 'first_team'}}"
+    sngs_times: "{'SNGS-132': '1', 'SNGS-133': '1', 'SNGS-134': '1', 'SNGS-135': '1', 'SNGS-136': '1', 'SNGS-137': '1', 'SNGS-138': '1', 'SNGS-139': '1', 'SNGS-140': '1', 'SNGS-141': '2', 'SNGS-142': '2', 'SNGS-143': '2', 'SNGS-144': '2', 'SNGS-145': '2', 'SNGS-146': '2', 'SNGS-147': '2', 'SNGS-148': '2', 'SNGS-149': '2', 'SNGS-150': '2'}"            
+    pure_colors: "{'first_team': ('white', 'white'), 'second_team': ('red', 'black'), 'other': [('yellow', 'black'), ('orange', 'orange'), ('blue', 'blue'), ('lightblue', 'lightblue'), ('black', 'black'), ('gray', 'white')]}"
+    model_params_id: "dc1fc3a496e14d6fba6cc3902e4a8a56" 
+
+  - id: 9
+    folder: "train"
+    sngs_inside: ['SNGS-151', 'SNGS-152', 'SNGS-153', 'SNGS-154', 'SNGS-155', 'SNGS-156', 'SNGS-157', 'SNGS-158', 'SNGS-159', 'SNGS-160', 'SNGS-161', 'SNGS-162', 'SNGS-163', 'SNGS-164', 'SNGS-165', 'SNGS-166', 'SNGS-167', 'SNGS-168', 'SNGS-169', 'SNGS-170']
+    remapping: "{'1': {'right-team': 'first_team', 'left-team': 'second_team'}}"
+    sngs_times: "{'SNGS-151': '1', 'SNGS-152': '1', 'SNGS-153': '1', 'SNGS-154': '1', 'SNGS-155': '1', 'SNGS-156': '1', 'SNGS-157': '1', 'SNGS-158': '1', 'SNGS-159': '1', 'SNGS-160': '2', 'SNGS-161': '2', 'SNGS-162': '2', 'SNGS-163': '2', 'SNGS-164': '2', 'SNGS-165': '2', 'SNGS-166': '2', 'SNGS-167': '2', 'SNGS-168': '2', 'SNGS-169': '2', 'SNGS-170': '2'}"             
+    pure_colors: "{'first_team': ('red', 'black'), 'second_team': ('white', 'white'), 'other': [('yellow', 'black'), ('orange', 'orange'), ('green', 'green'), ('black', 'black'), ('gray', 'gray')]}"
+    model_params_id: "3c749892485a4113b86ea33450716942" 
+  
+  - id: 11
+    folder: "test"
+    sngs_inside: ['SNGS-187', 'SNGS-188', 'SNGS-189', 'SNGS-190', 'SNGS-191', 'SNGS-192', 'SNGS-193', 'SNGS-194', 'SNGS-195', 'SNGS-196', 'SNGS-197', 'SNGS-198', 'SNGS-199', 'SNGS-200']
+    remapping: "{'1': {'right-team': 'second_team', 'left-team': 'first_team'}}"  
+    sngs_times: "{'SNGS-187': '1', 'SNGS-188': '1', 'SNGS-189': '1', 'SNGS-190': '1', 'SNGS-191': '1', 'SNGS-192': '1', 'SNGS-193': '1', 'SNGS-194': '1', 'SNGS-195': '2', 'SNGS-196': '2', 'SNGS-197': '2', 'SNGS-198': '2', 'SNGS-199': '2', 'SNGS-200': '2'}"           
+    pure_colors: "{'first_team': ('red', 'red'), 'second_team': ('white', 'white'), 'other': [('black', 'black'), ('yellow', 'yellow'), ('green', 'green'), ('yellow', 'black')]}"
+    model_params_id: "506812fedadc427e9112936ef084c74c" 

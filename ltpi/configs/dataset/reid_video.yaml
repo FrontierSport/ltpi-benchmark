@@ -1,0 +1,14 @@
+defaults:
+  - default
+
+_target_: ltpi.wrappers.dataset.reid_video_dataset.ReidVideoDataset
+
+fps: 25
+dataset_path: ${data_dir}/SoccerNetGS
+source_path: /root/projects/cska_spartak_eda/ds_ltpi
+video_filename: "video.mp4"
+
+# Force re-extraction of frames even if cache exists
+force_extract: false
+
+eval_set: "valid"

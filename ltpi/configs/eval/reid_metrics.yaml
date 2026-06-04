@@ -1,0 +1,6 @@
+_target_: ltpi.wrappers.eval.reid_metrics.ReidEvaluator
+
+csis:
+  ro: 0.8
+  cost_wrong: 1
+  cost_unk: 0.5

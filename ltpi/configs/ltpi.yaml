@@ -1,0 +1,129 @@
+# TrackLab SoccerNet config
+
+# The defaults list contains the files that will be used
+# to create the final config file. This item *must* be
+# the first element in the file.
+# Detailed configs for each default component below are located in "sn-gamestate/sn-gamestate/configs" and "tracklab/tracklab/configs"
+# Define here which implementation (yolov8, oc_sort, ..) to use for each generic (detection, tracking, ...) component.
+defaults:
+  - dataset: reid_video
+  - eval: reid_metrics
+  - engine: offline
+  - visualization: bbox  # Save tracking results as a .mp4 video in the run directory specified below (sn-gamestate/outputs/...)
+  - logger: null
+  - modules/reid: prtreid
+  - modules/jersey_number_detect: jersey_pipeline_for_prod
+  - modules/team: pretrained
+  - modules/tracklet_agg: majority_vote
+  - modules/identification: base_identifier
+  - _self_
+
+# Pipeline definition :
+# - Defines the order in which the modules will be called
+# - If loading a tracking state from disk, remove modules whose outputs are already provided in the loaded state
+# Use 'pipeline: []' for an empty pipeline (e.g. when loading all tracking results from a saved .pklz tracker state)
+pipeline:
+  - reid
+  - jersey_number_detect
+  - team
+  - tracklet_agg
+  - identification
+
+# Experiment name
+experiment_name: "ltpi"
+
+# Path definitions
+home_dir: "${oc.env:HOME}"
+data_dir: "${project_dir}/data"
+model_dir: "${project_dir}/pretrained_models"
+
+# FPS
+fps: 30
+
+# Queue name for remote execution. Local execution is enabled when queue_name: null
+queue_name: null
+
+# Target metric for optuna optimization
+target_metric: 'GS-HOTA/GS-HOTA'
+
+# n first videos will be uploaded to clearml
+n_to_log: 1
+
+# Machine configuration
+num_cores: 28
+use_wandb: False
+use_rich: True
+
+modules: # Allows module-specific batch_size and other configuration
+  reid: 
+    batch_size: 512
+    cfg:
+      model:
+        load_weights: ${model_dir}/job-0_12_model_60sec.pth.tar
+
+  jersey_number_detect: 
+    batch_size: 64 #64
+    num_cores: ${num_cores}
+
+  tracklet_agg:
+    cfg:
+      attributes: ['jersey_number', 'role', 'team']
+
+  team:
+    cfg:
+      matches_ids: 
+        - id: 1
+          folder: "train"
+          sngs_inside: ['SNGS-001', 'SNGS-002']               
+          remapping: "{'1': {'right-team': 'first_team', 'left-team': 'second_team'},
+                       '2': {'right-team': 'second_team', 'left-team': 'first_team'}}"
+          sngs_times: "{'SNGS-001': '1', 'SNGS-002': '1'}"               
+          pure_colors: null             
+          model_params_id: ${model_dir}/team_cls_finetuned.pt
+  
+  postprocessing:
+    cfg:
+      use_split: False
+
+
+# Flags
+test_tracking: True
+print_config: False
+
+# Dataset
+dataset:
+  fps: ${fps}
+  nvid: 1  # For a quick first inference, only the first video is processed. Use "-1" to process all the videos.
+  eval_each_attribute: False
+#  nframes: -1 # For testing on only a few frames, set to a positive number. Will disable evaluation !
+  eval_set: "test"  # Tracking is performed on the SoccerNet validation set. Choose from {"train", "valid", "test", "challenge"}.
+  dataset_path: ${data_dir}/SoccerNetGS # or <some_path>/SoccerNetGS
+  source_path: /root/projects/cska_spartak_eda/ds_ltpi
+  vids_dict: # Use one key per split (valid, test, etc)
+    test: ['2']
+    valid: []  # Specify explicitly which video to apply tracking on, e.g. ['SNGS-04', 'SNGS-51'] . Ignored when left empty.
+    train: []
+
+# Tracker state (save computation time by dumping tracking results on disk for later re-use)
+state:
+  save_file: "states/${experiment_name}.pklz"  # 'null' to disable saving. This is the save path for the tracker_state object that contains all modules outputs (bboxes, reid embeddings, jersey numbers, roles, teams, etc)
+  load_file: null # can be null, path to original tracklab state or path to cache directory
+  load_from_groundtruth: True
+
+# Visualization
+visualization:
+  video_fps: ${fps}
+  save_videos: False  # Save a .mp4 video on disk with the game state reconstruction output (see 'tracklab/tracklab/configs/visualization' for more options)
+
+
+# configure Hydra to use the current working directory
+# and set up the output directory according to experiment_name
+project_dir: "${hydra:runtime.cwd}"
+hydra:
+  output_subdir: "configs"
+  job:
+    chdir: True
+  run:
+    dir: "outputs/${experiment_name}/${now:%Y-%m-%d}/${now:%H-%M-%S}"
+  sweep:
+    dir: "multirun_outputs/${experiment_name}/${now:%Y-%m-%d}/${now:%H-%M-%S}"

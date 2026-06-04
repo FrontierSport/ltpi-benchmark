@@ -1,0 +1,15 @@
+_target_: ltpi.wrappers.jersey.jersey_pipeline_for_prod.JerseyPipeline
+batch_size: 8
+num_cores: 24
+
+config:
+  _target_: ltpi.wrappers.jersey.jersey_pipeline_for_prod.CFG
+  legibility_model: ${model_dir}/legibility_resnet34_soccer_20240215.pth
+  legibility_model_arch: resnet34
+  arch: resnet
+  mode: test
+  pose_config: /root/miniconda3/envs/ltpi/lib/python3.10/site-packages/mmpose/.mim/configs/body/2d_kpt_sview_rgb_img/topdown_heatmap/coco/ViTPose_huge_coco_256x192.py
+  pose_checkpoint: ${model_dir}/vitpose-h.pth
+
+  str_checkpoint: ${model_dir}/parseq_fixed.ckpt 
+  charset_test: '0123456789'

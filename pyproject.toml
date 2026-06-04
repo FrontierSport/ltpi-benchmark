@@ -1,0 +1,46 @@
+[project]
+name = "ltpi"
+version = "0.0.1"
+description = ""
+readme = "README.md"
+requires-python = ">=3.9,<3.11"
+
+dependencies = [
+    "fastparquet",
+    "pyarrow",
+    "Cython",
+    "click",
+    "opencv-python",
+    "scipy",
+    "gdown",
+    "tensorboard",
+    "albumentations==2.0.1",
+    "mmcv==1.3.8",
+    "lmdb==1.6.2",
+    "nltk==3.9.1",
+    "setuptools==80.10.2",
+    "scikit-learn==1.6.1",
+    "tracklab==1.3.24",
+    "torch==2.5.1",
+    "prtreid @ git+https://github.com/VlSomers/prtreid@30617a75967e84d5d516959c4b84cbeea6f56493",
+    "mmpose @ git+https://github.com/ViTAE-Transformer/ViTPose.git@d5216452796c90c6bc29f5c5ec0bdba94366768a",
+    "strhub @ git+https://github.com/baudm/parseq.git@1902db043c029a7e03a3818c616c06600af574be",
+    "numpy==1.26.4",
+    "lightning==2.5.2",
+    "transformers==4.50.3",
+    "tokenizers==0.21.4",
+    "timm==0.9.16"
+]
+
+[project.entry-points.tracklab_plugin]
+ltpi = "ltpi.config_finder:ConfigFinder"
+
+[build-system]
+requires = ["setuptools>=80"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["ltpi*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.txt", "*.rst", "*.yaml"]

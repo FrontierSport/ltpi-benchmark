@@ -1,0 +1,97 @@
+# TrackLab SoccerNet config
+
+# The defaults list contains the files that will be used
+# to create the final config file. This item *must* be
+# the first element in the file.
+# Detailed configs for each default component below are located in "sn-gamestate/sn-gamestate/configs" and "tracklab/tracklab/configs"
+# Define here which implementation (yolov8, oc_sort, ..) to use for each generic (detection, tracking, ...) component.
+defaults:
+  - dataset: soccernet_gs
+  - eval: gs_hota
+  - engine: offline
+  - visualization: gamestate  # Save tracking results as a .mp4 video in the run directory specified below (sn-gamestate/outputs/...)
+  - modules/bbox_detector: yolo_ultralytics
+  - modules/reid: prtreid
+  - modules/track: bpbreid_strong_sort
+  - modules/jersey_number_detect: mmocr
+  - modules/team: kmeans_embeddings
+  - modules/team_side: mean_position
+  - modules/tracklet_agg: voting_role_jn
+  - modules/pitch : nbjw_calib
+  - modules/calibration: nbjw_calib
+  - _self_
+
+# Pipeline definition :
+# - Defines the order in which the modules will be called
+# - If loading a tracking state from disk, remove modules whose outputs are already provided in the loaded state
+# Use 'pipeline: []' for an empty pipeline (e.g. when loading all tracking results from a saved .pklz tracker state)
+pipeline:
+  - bbox_detector
+  - reid
+  - track
+  - pitch
+  - calibration
+  - jersey_number_detect
+  - tracklet_agg
+  - team
+  - team_side
+
+
+# Experiment name
+experiment_name: "sn-gamestate"
+
+# Path definitions
+home_dir: "${oc.env:HOME}"
+data_dir: "${project_dir}/data"
+model_dir: "${project_dir}/pretrained_models"
+
+# Machine configuration
+num_cores: 4
+use_wandb: False
+use_rich: True
+
+modules: # Allows module-specific batch_size and other configuration
+  bbox_detector: {batch_size: 8}
+  pose_bottomup: {batch_size: 8}
+  reid: {batch_size: 64}
+  track: {batch_size: 64}
+  pitch: {batch_size: 1}
+  calibration: {batch_size: 1}
+  jersey_number_detect: {batch_size: 8}
+
+# Flags
+test_tracking: True
+eval_tracking: True
+print_config: False
+
+# Dataset
+dataset:
+  nvid: 1  # For a quick first inference, only the first video is processed. Use "-1" to process all the videos.
+#  nframes: -1 # For testing on only a few frames, set to a positive number. /!\ Evaluation will display low values for GS-HOTA, since predictions will be incomplete (i.e. predictions on a few frames vs ground truth on all frames)
+  eval_set: "valid"  # Tracking is performed on the SoccerNet validation set. Choose from {"train", "valid", "test", "challenge"}.
+  dataset_path: ${data_dir}/SoccerNetGS  # The SoccerNet game state dataset is located under the data path (defined above) in the 'SoccerNetGS' folder
+  vids_dict: # Use one key per split (valid, test, etc)
+    valid: []  # Specify explicitly which video to apply tracking on, e.g. ['SNGS-04', 'SNGS-51'] . Ignored when left empty.
+
+# Tracker state (save computation time by dumping tracking results on disk for later re-use)
+# Dump tracking results to a .pcklz file to save computation time on the next run. Have a look at TrackLab tutorials for more details.
+state:
+  save_file: "states/${experiment_name}.pklz"  # 'null' to disable saving. This is the save path for the tracker_state object that contains all modules outputs (bboxes, reid embeddings, jersey numbers, roles, teams, etc)
+  load_file: null  # 'null' to disable loading. Load a file that was saved with the 'state.save_file' option above. Don't forget to remove from the pipeline all modules that should not be run again, but loaded from the saved tracker state.
+
+# Visualization
+visualization:
+  cfg:
+    save_videos: True  # Save a .mp4 video on disk with the game state reconstruction output (see 'tracklab/tracklab/configs/visualization' for more options)
+
+# configure Hydra to use the current working directory
+# and set up the output directory according to experiment_name
+project_dir: "${hydra:runtime.cwd}"
+hydra:
+  output_subdir: "configs"
+  job:
+    chdir: True
+  run:
+    dir: "outputs/${experiment_name}/${now:%Y-%m-%d}/${now:%H-%M-%S}"
+  sweep:
+    dir: "multirun_outputs/${experiment_name}/${now:%Y-%m-%d}/${now:%H-%M-%S}"
